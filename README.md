@@ -1,4 +1,7 @@
-# telectr
+# telectr [![travis][travis-image]][travis-url]
+
+[travis-image]: https://img.shields.io/travis/telekollektiv/telectr.svg
+[travis-url]: https://travis-ci.org/telekollektiv/telectr
 
 A web based (+/-1) increase/decrease (person) counter which collects counts from multiple interfaces and summarizes them in one place (somehow)
 
