@@ -44,9 +44,9 @@ $ cargo run
 
 ## On the wire
 
-`+test1` -> increase the `test1` counter by 1
-`-test1` -> decrease the `test1` counter by 1
-`_test1` -> get the current value of `test1` counter
+- `+test1` -> increase the `test1` counter by 1
+- `-test1` -> decrease the `test1` counter by 1
+- `_test1` -> get the current value of `test1` counter
 
 ## License
 
