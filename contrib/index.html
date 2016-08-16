@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <input id="key">
+        <span id="value">0</span>
+        <button id="inc">+</button>
+        <button id="dec">-</button>
+
+        <script>
+            var sock = new WebSocket('ws://127.0.0.1:3012');
+
+            document.getElementById('inc').onclick = function() {
+                var key = document.getElementById('key');
+                sock.send('+' + key.value);
+            };
+
+            document.getElementById('dec').onclick = function() {
+                var key = document.getElementById('key');
+                sock.send('-' + key.value);
+            };
+
+            sock.onerror = function(error) {
+                console.log('ws error: ' + error);
+            };
+
+            sock.onmessage = function(msg) {
+                console.log('server: ' + msg.data);
+                document.getElementById('value').textContent = msg.data
+            };
+        </script>
+    </body>
+</html>
