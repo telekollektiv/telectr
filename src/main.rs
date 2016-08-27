@@ -53,7 +53,7 @@ impl Handler for Server {
 }
 
 fn main() {
-    let addr = "127.0.0.1:3012";
+    let addr = "0.0.0.0:3012";
 
     let db = env::args().nth(1).unwrap_or(String::from("redis://127.0.0.1/"));
 
