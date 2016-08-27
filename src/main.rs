@@ -3,6 +3,7 @@ extern crate ws;
 
 use redis::Client;
 use ws::{ listen, Handler, Sender, Result, Message, CloseCode };
+use std::env;
 
 struct Server {
     out: Sender,
@@ -54,9 +55,11 @@ impl Handler for Server {
 fn main() {
     let addr = "127.0.0.1:3012";
 
-    println!("[*] starting ({})...", addr);
+    let db = env::args().nth(1).unwrap_or(String::from("redis://127.0.0.1/"));
+
+    println!("[*] starting ({} -> {})...", addr, db);
     listen(addr, |out| Server {
         out: out,
-        sock: Client::open("redis://127.0.0.1/").unwrap(),
+        sock: Client::open(db.as_str()).unwrap(),
     }).unwrap()
 }
