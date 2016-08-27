@@ -1,7 +1,6 @@
 var remote = 'wss://' + document.location.host + '/ws';
 
 // utils
-
 var statusBar = (function() {
     var bar = document.getElementById('status');
 
@@ -19,36 +18,56 @@ var statusBar = (function() {
 })();
 
 // websocket
+var socket = (function(remote) {
+    var sock;
 
-var sock = new WebSocket(remote);
+    var connect = function() {
+        sock = new WebSocket(remote);
+
+        sock.onopen = function() {
+            statusBar.connected();
+            if(key) {
+                sync();
+            }
+        };
+
+        sock.onerror = function(error) {
+            console.log('ws error: ' + error);
+            sock.close();
+        };
+
+        sock.onclose = function() {
+            statusBar.disconnected();
+            setTimeout(function() {
+                connect();
+            }, 1000);
+        };
+
+        sock.onmessage = function(msg) {
+            console.log('server: ' + msg.data);
+            document.getElementById('value').textContent = msg.data
+        };
+    };
+
+    connect();
+
+    return {
+        send: function(msg) {
+            return sock.send(msg);
+        }
+    };
+})(remote);
 
 var inc = document.getElementById('inc').onclick = function() {
-    sock.send('+' + key);
+    socket.send('+' + key);
 };
 
 var dec = document.getElementById('dec').onclick = function() {
-    sock.send('-' + key);
+    socket.send('-' + key);
 };
 
 var sync = document.getElementById('sync').onclick = function() {
-    sock.send('_' + key);
-};
-
-sock.onopen = function() {
-    statusBar.connected();
-    if(key) {
-        sync();
-    }
-};
-
-sock.onerror = function(error) {
-    console.log('ws error: ' + error);
-    statusBar.disconnected();
-};
-
-sock.onmessage = function(msg) {
-    console.log('server: ' + msg.data);
-    document.getElementById('value').textContent = msg.data
+    socket.send('_' + key);
 };
 
 // controller
