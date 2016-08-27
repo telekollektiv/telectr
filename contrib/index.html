@@ -2,34 +2,30 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <title>ctr.telekollektiv.org</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <input id="key">
-        <span id="value">0</span>
-        <button id="inc">+</button>
-        <button id="dec">-</button>
+        <h1>ctr</h1>
 
-        <script>
-            var sock = new WebSocket('ws://127.0.0.1:3012');
+        <div id="intro">
+            <form id="intro-form">
+                <input id="intro-key">
+                <input type="submit" value="Enter">
+            </form>
+        </div>
 
-            document.getElementById('inc').onclick = function() {
-                var key = document.getElementById('key');
-                sock.send('+' + key.value);
-            };
+        <div id="ctr" hidden>
+            <h2>
+                <span id="key"></span>:
+                <span id="value">0</span>
+            </h2>
 
-            document.getElementById('dec').onclick = function() {
-                var key = document.getElementById('key');
-                sock.send('-' + key.value);
-            };
+            <button id="inc">+</button>
+            <button id="dec">-</button>
+            <button id="sync">sync</button>
+        </div>
 
-            sock.onerror = function(error) {
-                console.log('ws error: ' + error);
-            };
-
-            sock.onmessage = function(msg) {
-                console.log('server: ' + msg.data);
-                document.getElementById('value').textContent = msg.data
-            };
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>
