@@ -22,20 +22,20 @@ impl Handler for Server {
                 println!("inc {}", key);
                 match redis::cmd("INCR").arg(key).query(&sock) {
                     Ok(value) => { value },
-                    Err(_) => { -1 },
+                    Err(_) => { 0 },
                 }
             }
             '-' => {
                 println!("dec {}", key);
                 match redis::cmd("DECR").arg(key).query(&sock) {
                     Ok(value) => { value },
-                    Err(_) => { -1 },
+                    Err(_) => { 0 },
                 }
             }
             _ => {
                 match redis::cmd("GET").arg(key).query(&sock) {
                     Ok(value) => { value },
-                    Err(_) => { -1 },
+                    Err(_) => { 0 },
                 }
             }
         };
