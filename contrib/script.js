@@ -1,5 +1,23 @@
 var remote = 'wss://' + document.location.host + '/ws';
 
+// utils
+
+var statusBar = (function() {
+    var bar = document.getElementById('status');
+
+    return {
+        disconnected: function() {
+            bar.classList = ['progress'];
+            bar.textContent = 'Connecting..';
+        },
+
+        connected: function() {
+            bar.classList = ['connected'];
+            bar.textContent = 'Connected';
+        }
+    };
+})();
+
 // websocket
 
 var sock = new WebSocket(remote);
@@ -17,6 +35,7 @@ var sync = document.getElementById('sync').onclick = function() {
 };
 
 sock.onopen = function() {
+    statusBar.connected();
     if(key) {
         sync();
     }
@@ -24,6 +43,7 @@ sock.onopen = function() {
 
 sock.onerror = function(error) {
     console.log('ws error: ' + error);
+    statusBar.disconnected();
 };
 
 sock.onmessage = function(msg) {

@@ -6,24 +6,28 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>ctr</h1>
+        <div id="status" class="progress">Connecting...</div>
 
-        <div id="intro">
-            <form id="intro-form">
-                <input id="intro-key">
-                <input type="submit" value="Enter">
-            </form>
-        </div>
+        <div class="container">
+            <h1>ctr</h1>
 
-        <div id="ctr" hidden>
-            <h2>
-                <span id="key"></span>:
-                <span id="value">0</span>
-            </h2>
+            <div id="intro">
+                <form id="intro-form">
+                    <input id="intro-key">
+                    <input type="submit" value="Enter">
+                </form>
+            </div>
 
-            <button id="inc">+</button>
-            <button id="dec">-</button>
-            <button id="sync">sync</button>
+            <div id="ctr" hidden>
+                <h2>
+                    <span id="key"></span>:
+                    <span id="value">0</span>
+                </h2>
+
+                <button id="inc">+</button>
+                <button id="dec">-</button>
+                <button id="sync">sync</button>
+            </div>
         </div>
 
         <script src="script.js"></script>

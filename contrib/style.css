@@ -1,5 +1,29 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.container {
+    margin: 10px;
+}
+
 #ctr > button {
     width: 100%;
     margin: 0 0 10px;
     padding: 20px;
+}
+
+#status {
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    padding: 5px;
+}
+
+#status.progress {
+    background-color: orange;
+}
+
+#status.connected {
+    background-color: green;
 }
