@@ -100,3 +100,6 @@ if(key) {
     toggle('intro');
 }
 
+document.ontouchmove = function(event) {
+    event.preventDefault();
+}
