@@ -6,12 +6,12 @@ var statusBar = (function() {
 
     return {
         disconnected: function() {
-            bar.classList = ['progress'];
+            bar.className = 'progress';
             bar.textContent = 'Connecting..';
         },
 
         connected: function() {
-            bar.classList = ['connected'];
+            bar.className = 'connected';
             bar.textContent = 'Connected';
         }
     };
