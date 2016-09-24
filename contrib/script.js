@@ -84,7 +84,7 @@ var openRoom = function(name) {
     toggle('ctr');
 };
 
-var key = document.location.hash.slice(1);
+var key = document.location.hash.slice(1).trim();
 
 document.getElementById('intro-form').onsubmit = function() {
     key = document.getElementById('intro-key').value;
