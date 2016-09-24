@@ -87,7 +87,7 @@ var openRoom = function(name) {
 var key = document.location.hash.slice(1).trim();
 
 document.getElementById('intro-form').onsubmit = function() {
-    key = document.getElementById('intro-key').value;
+    key = document.getElementById('intro-key').value.trim();
     openRoom(key);
     sync();
 
